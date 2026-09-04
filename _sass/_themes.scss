@@ -2,9 +2,13 @@
  * Themes
  *
  * Local override of al_folio_core's _sass/_themes.scss.
- * Only change from upstream: the footer/copyright bar uses the page's own
- * background/text/theme colors instead of the gem's contrasting footer
- * palette, so it blends into the page in both light and dark mode.
+ * Only changes from upstream:
+ *  1. Footer/copyright bar uses the page's own background/text/theme colors
+ *     instead of the gem's contrasting footer palette, so it blends into the
+ *     page in both light and dark mode.
+ *  2. Profile picture is capped smaller (see .profile img at the end).
+ * Everything else below is copied verbatim from upstream so the theme
+ * toggle (system/light/dark icon switching) keeps working.
  * Track drift with `bundle exec al-folio upgrade overrides audit`.
  ******************************************************************************/
 @use "variables" as v;
@@ -127,22 +131,90 @@ html[data-theme="dark"] {
   }
 }
 
-/*******************************************************************************
- * Theme-toggle icon fix
- *
- * The gem's navbar markup gives the default "system" toggle icon the class
- * `fa-half-sun-moon` with no style prefix (fa-solid/fa-regular/...). That
- * glyph isn't in the pinned Font Awesome Free build this site loads, and
- * without a style prefix the icon font's base rule never even applies, so
- * the button renders empty and becomes invisible in the navbar. Force the
- * equivalent free glyph (circle-half-stroke, U+F042) directly.
- ******************************************************************************/
-#light-toggle-system::before {
+html[data-theme-setting="dark"] {
+  #light-toggle-system {
+    display: none;
+  }
+
+  #light-toggle-dark {
+    display: inline-block;
+  }
+
+  #light-toggle-light {
+    display: none;
+  }
+
+  #back-to-top {
+    color: var(--global-back-to-top-text-color);
+    background: var(--global-back-to-top-bg-color);
+  }
+}
+
+html[data-theme-setting="light"] {
+  #light-toggle-system {
+    display: none;
+  }
+
+  #light-toggle-dark {
+    display: none;
+  }
+
+  #light-toggle-light {
+    display: inline-block;
+  }
+}
+
+.fa-half-sun-moon {
+  position: relative;
   display: inline-block;
-  font-family: "Font Awesome 7 Free";
+
+  --fa-font: var(--fa-font-solid);
+  speak: none;
   font-style: normal;
-  font-weight: 900;
-  content: "\f042";
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  width: 1em;
+  height: 1em;
+}
+
+.fa-half-sun-moon::before,
+.fa-half-sun-moon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  top: -0.5px;
+  bottom: -0.5px;
+  text-align: center;
+  line-height: 1em;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  font: var(--fa-font);
+}
+
+/* Left half: MOON */
+.fa-half-sun-moon::before {
+  content: "\f111";
+  color: var(--global-text-color);
+  clip-path: polygon(0 0, calc(50% - 0.5px) 0, calc(50% - 0.5px) 100%, 0 100%);
+}
+
+/* Right half: SUN */
+.fa-half-sun-moon::after {
+  content: "\f185";
+  color: var(--global-text-color);
+  clip-path: polygon(calc(50% + 0.5px) 0, 100% 0, 100% 100%, calc(50% + 0.5px) 100%);
+  right: -1.5px; /* slight overflow to avoid right-edge clipping */
+  transform: translateX(-1px); /* visually re-center the sun half */
+}
+
+#light-toggle:hover .fa-half-sun-moon::before {
+  color: var(--global-theme-color);
+}
+
+#light-toggle:hover .fa-half-sun-moon::after {
+  color: var(--global-theme-color);
 }
 
 /*******************************************************************************
