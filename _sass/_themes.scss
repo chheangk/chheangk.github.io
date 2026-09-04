@@ -126,3 +126,21 @@ html[data-theme="dark"] {
     display: block;
   }
 }
+
+/*******************************************************************************
+ * Theme-toggle icon fix
+ *
+ * The gem's navbar markup gives the default "system" toggle icon the class
+ * `fa-half-sun-moon` with no style prefix (fa-solid/fa-regular/...). That
+ * glyph isn't in the pinned Font Awesome Free build this site loads, and
+ * without a style prefix the icon font's base rule never even applies, so
+ * the button renders empty and becomes invisible in the navbar. Force the
+ * equivalent free glyph (circle-half-stroke, U+F042) directly.
+ ******************************************************************************/
+#light-toggle-system::before {
+  display: inline-block;
+  font-family: "Font Awesome 7 Free";
+  font-style: normal;
+  font-weight: 900;
+  content: "\f042";
+}
