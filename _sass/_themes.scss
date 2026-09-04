@@ -144,3 +144,14 @@ html[data-theme="dark"] {
   font-weight: 900;
   content: "\f042";
 }
+
+/*******************************************************************************
+ * Smaller profile picture
+ *
+ * The gem sizes the about-page profile image to ~30% of site.max_width
+ * (about 270px on desktop). Cap it smaller here; width: 100% from the gem
+ * rule still applies below this, so it stays responsive on narrow screens.
+ ******************************************************************************/
+.profile img {
+  max-width: 180px;
+}
