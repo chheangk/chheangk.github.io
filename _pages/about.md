@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Researcher @ TSC
+subtitle:
 
 profile:
   align: right
