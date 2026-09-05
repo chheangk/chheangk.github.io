@@ -23,5 +23,10 @@ module.exports = {
     // and page chrome (scroll-progress bar, ToC) bleeds through a zoomed image.
     "medium-zoom-overlay",
     "medium-zoom-image--opened",
+    // vanilla-back-to-top (loaded from a CDN, not bundled into _site) creates
+    // #back-to-top at runtime, so the id never appears in the scanned content;
+    // without this, our #back-to-top size/shape/color override gets purged
+    // and the button falls back to the library's default 56px circle.
+    "back-to-top",
   ],
 };
