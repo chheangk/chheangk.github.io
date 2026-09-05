@@ -7,6 +7,8 @@
  *     instead of the gem's contrasting footer palette, so it blends into the
  *     page in both light and dark mode.
  *  2. Profile picture is capped smaller (see .profile img at the end).
+ *  3. #back-to-top button sits higher (bottom: 80px) so it clears the
+ *     page's fixed footer bar instead of overlapping it.
  * Everything else below is copied verbatim from upstream so the theme
  * toggle (system/light/dark icon switching) keeps working.
  * Track drift with `bundle exec al-folio upgrade overrides audit`.
@@ -76,7 +78,9 @@
   #back-to-top {
     color: var(--global-back-to-top-text-color);
     background: var(--global-back-to-top-bg-color);
-    bottom: v.$back-to-top-bottom;
+    // The gem's default bottom offset sits underneath the page's fixed
+    // footer bar, so raise it clear of the footer.
+    bottom: 80px;
     right: v.$back-to-top-right;
     height: v.$back-to-top-height;
     width: v.$back-to-top-width;
