@@ -84,6 +84,19 @@
     width: 28px;
     border-radius: 0;
     z-index: v.$back-to-top-z-index;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // The library sizes/positions its svg icon (margin-top, height, width)
+  // assuming its own 56px default diameter. Since we shrink the button to
+  // 28px above, override the icon here too or it renders mostly clipped
+  // outside the smaller box.
+  #back-to-top svg {
+    height: 14px;
+    width: 14px;
+    margin: 0;
   }
 }
 
