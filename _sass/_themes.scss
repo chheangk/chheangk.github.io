@@ -85,6 +85,16 @@
     height: v.$back-to-top-height;
     width: v.$back-to-top-width;
     z-index: v.$back-to-top-z-index;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // The library positions its svg icon with a hardcoded margin-top sized
+  // for its own default diameter, which drifts off-center against the
+  // gem's own button height/width. Let flexbox center it instead.
+  #back-to-top svg {
+    margin: 0;
   }
 }
 
