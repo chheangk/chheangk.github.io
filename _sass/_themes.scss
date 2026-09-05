@@ -7,8 +7,6 @@
  *     instead of the gem's contrasting footer palette, so it blends into the
  *     page in both light and dark mode.
  *  2. Profile picture is capped smaller (see .profile img at the end).
- *  3. #back-to-top button is smaller and square instead of the gem's
- *     56px circle (see the :root #back-to-top rule below).
  * Everything else below is copied verbatim from upstream so the theme
  * toggle (system/light/dark icon switching) keeps working.
  * Track drift with `bundle exec al-folio upgrade overrides audit`.
@@ -80,23 +78,9 @@
     background: var(--global-back-to-top-bg-color);
     bottom: v.$back-to-top-bottom;
     right: v.$back-to-top-right;
-    height: 28px;
-    width: 28px;
-    border-radius: 0;
+    height: v.$back-to-top-height;
+    width: v.$back-to-top-width;
     z-index: v.$back-to-top-z-index;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  // The library sizes/positions its svg icon (margin-top, height, width)
-  // assuming its own 56px default diameter. Since we shrink the button to
-  // 28px above, override the icon here too or it renders mostly clipped
-  // outside the smaller box.
-  #back-to-top svg {
-    height: 14px;
-    width: 14px;
-    margin: 0;
   }
 }
 
