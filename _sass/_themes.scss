@@ -232,26 +232,6 @@ html[data-theme-setting="light"] {
 }
 
 /*******************************************************************************
- * Smaller social icons
- *
- * The gem sets .contact-icons font-size to 4rem. Scale it down to 2rem so
- * the icons appear roughly half the default size.
- ******************************************************************************/
-.contact-icons {
-  font-size: 2rem;
-
-  img {
-    width: 1.6rem;
-    height: 1.6rem;
-  }
-
-  svg {
-    width: 1.75rem;
-    height: 2rem;
-  }
-}
-
-/*******************************************************************************
  * Justified bio text on the about page
  ******************************************************************************/
 .post p {
