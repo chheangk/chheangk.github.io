@@ -13,7 +13,7 @@ profile:
     <p>Ph.D. in AI, IoT and Big Data, Chung-Ang University</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: false # includes social icons at the bottom of the page
+social: true # includes social icons at the bottom of the page
 
 announcements:
   enabled: false # includes a list of news items
@@ -26,7 +26,6 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Dr. Kimchheang Chhea is an AI Researcher at Techo Startup Center (TSC). He earned his Ph.D. in AI, IoT, and Big Data from Chung-Ang University.
-His research focuses on the intersection of wireless communications, network optimization, and artificial intelligence, with particular emphasis on physical layer security, UAV and satellite communications, AI-driven wireless systems, large language modeling, and agentic AI. His work explores intelligent and scalable solutions for next-generation networks by integrating advanced optimization techniques with emerging AI technologies.
-Prior to his current role, he worked as an Research Engineer at FLYNIX in Seoul, South Korea, and served as a Laboratory Manager and Teaching Assistant in the School of Electrical and Electronics Engineering at Chung-Ang University.
+I am a researcher at TSC, holding a Ph.D. in AI, IoT and Big Data from Chung-Ang University. My work focuses on network optimization, physical layer security, UAV and satellite communications, and AI for wireless systems, with an interest in bio-inspired resource allocation.
 
+Previously, I worked as an engineer at FLYNIX in Seoul, South Korea, and served as a lab manager and teaching assistant in the School of Electrical and Electronics Engineering at Chung-Ang University.
