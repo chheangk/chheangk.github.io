@@ -234,18 +234,20 @@ html[data-theme-setting="light"] {
 /*******************************************************************************
  * Smaller social icons
  *
- * The gem sets .contact-icons font-size to 4rem. Scale it down to 1.25rem so
- * the icons appear well under half the default size.
+ * The gem sets font-size/image dimensions on ".social .contact-icons"
+ * (and its "a img" / "a svg" descendants), not the bare ".contact-icons"
+ * class. Match that selector specificity, otherwise the gem's rule wins
+ * and this override is silently ignored.
  ******************************************************************************/
-.contact-icons {
+.social .contact-icons {
   font-size: 1.25rem;
 
-  img {
+  a img {
     width: 1rem;
     height: 1rem;
   }
 
-  svg {
+  a svg {
     width: 1.1rem;
     height: 1.25rem;
   }
