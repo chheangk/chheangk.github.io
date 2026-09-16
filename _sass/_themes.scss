@@ -233,14 +233,9 @@ html[data-theme-setting="light"] {
 
 /*******************************************************************************
  * Justified bio text on the about page
- *
- * text-align-last justifies the final line of each paragraph too, so short
- * trailing lines still spread evenly between the margins instead of
- * hugging the left edge.
  ******************************************************************************/
 .post p {
   text-align: justify;
-  text-align-last: justify;
 }
 
 /*******************************************************************************
