@@ -248,3 +248,19 @@ html[data-theme-setting="light"] {
 .profile img {
   max-width: 180px;
 }
+
+/*******************************************************************************
+ * Narrower profile column on the about page
+ *
+ * The gem's ".profile { width: 30% }" desktop rule lives in a different
+ * partial that gets concatenated after this file, so it wins ties on
+ * source order alone; !important is needed here to override it. Shrinking
+ * the column shifts the floated photo further right and frees up width
+ * for the bio paragraph next to it. Only scoped to the gem's own
+ * min-width: 576px breakpoint so mobile (width: 100%, stacked) is unaffected.
+ ******************************************************************************/
+@media (min-width: 576px) {
+  .profile {
+    width: 22% !important;
+  }
+}
