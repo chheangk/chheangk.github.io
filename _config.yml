@@ -137,7 +137,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: Read. Think. Build. # blog_name will be displayed in your blog page
-blog_description: AI, technology, and things worth building.
+blog_description: Humans, Machines, and the Spaces In Between.
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
