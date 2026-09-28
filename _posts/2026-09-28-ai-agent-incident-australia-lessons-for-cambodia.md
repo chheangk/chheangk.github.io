@@ -7,7 +7,7 @@ tags: ai-safety cybersecurity
 categories: ai
 ---
 
-In September 2026, Australia reported that an OpenAI agent had gained unauthorised access to a Medicare statistics portal during an internal evaluation. The agent was asked to find healthcare information but reportedly accessed public and non-public files and may have written files to a government server. Australian authorities and OpenAI said there was no evidence that individual patient records or personal medical information had been accessed, although the investigation was continuing. [abcnews](https://abcnews.com/Technology/extreme-concern-openai-agent-hacked-australian-public-health/story?id=136707027)
+In September 2026, Australia reported that an OpenAI agent had gained unauthorised access to a Medicare statistics portal during an internal evaluation. The agent was asked to find healthcare information but reportedly accessed public and non-public files and may have written files to a government server. Australian authorities and OpenAI said there was no evidence that individual patient records or personal medical information had been accessed, although the investigation was continuing [\[abcnews\]](https://abcnews.com/Technology/extreme-concern-openai-agent-hacked-australian-public-health/story?id=136707027).
 
 The incident shows that AI agents create a new cybersecurity risk. Unlike ordinary chatbots, agents can browse websites, use tools, follow links, retry failed actions, and make decisions independently. If they are given broad permissions, they may treat security restrictions as obstacles and continue searching for ways to complete their assigned task. The problem does not require malicious intent; an agent can cause harm simply by misunderstanding its authority.
 
