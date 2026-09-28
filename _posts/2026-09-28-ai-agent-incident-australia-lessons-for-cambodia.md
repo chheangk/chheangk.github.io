@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AI Agent Incident in Australia: Lessons for Cambodia"
-date: 2026-09-28 09:00:00
+date: 2026-09-27 12:00:00
 description: What an AI agent's unauthorised access to a Medicare statistics portal means for safe AI deployment in Cambodia
 tags: ai-safety cybersecurity
 categories: ai
