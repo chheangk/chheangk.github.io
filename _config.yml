@@ -136,8 +136,8 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Kimchheang Chhea # blog_name will be displayed in your blog page
-blog_description: Notes on wireless communications, network optimization, and AI
+blog_name: Read. Think. Build. # blog_name will be displayed in your blog page
+blog_description: AI, technology, and things worth building.
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
