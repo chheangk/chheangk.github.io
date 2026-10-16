@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Child Who Forgot How to Say No"
-date: 2026-10-16 18:00:00
+date: 2026-10-16 00:00:00
 description: What abliteration, the removal of an AI model's refusal behaviour, reveals about open-weight safety
 tags: ai-safety open-weight
 categories: ai
