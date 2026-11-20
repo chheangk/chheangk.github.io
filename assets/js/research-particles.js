@@ -2,7 +2,12 @@ const canvas = document.querySelector(".research-particles");
 const context = canvas?.getContext("2d");
 
 if (context) {
+  document.body.prepend(canvas);
+
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const motionToggle = document.querySelector(".research-motion-toggle");
+  const trail = [];
+  let motionOverride = false;
   let pointer;
   let width;
   let height;
@@ -10,8 +15,13 @@ if (context) {
   let frame;
   let previousTime;
 
+  function motionEnabled() {
+    return !reducedMotion.matches || motionOverride;
+  }
+
   function draw(time) {
     const step = previousTime === undefined ? 0 : Math.min((time - previousTime) / 16.67, 2);
+    const ease = 1 - Math.pow(0.9, step);
     previousTime = time;
     context.clearRect(0, 0, width, height);
 
@@ -21,17 +31,25 @@ if (context) {
       if (pointer) {
         const dx = pointer.x - particle.homeX;
         const dy = pointer.y - particle.homeY;
-        const pull = 0.75 * Math.max(0, 1 - Math.hypot(dx, dy) / 220);
+        const pull = Math.max(0, 1 - Math.hypot(dx, dy) / 320);
         targetX += dx * pull;
         targetY += dy * pull;
       }
-      const ease = 1 - Math.pow(0.9, step);
       particle.x += (targetX - particle.x) * ease;
       particle.y += (targetY - particle.y) * ease;
 
       context.globalAlpha = 0.8;
       context.beginPath();
       context.arc(particle.x, particle.y, 1.7, 0, Math.PI * 2);
+      context.fill();
+    }
+
+    for (const dot of trail) {
+      const life = Math.max(0, 1 - (time - dot.time) / 550);
+      if (!life) continue;
+      context.globalAlpha = life;
+      context.beginPath();
+      context.arc(dot.x, dot.y, 1 + 2.2 * life, 0, Math.PI * 2);
       context.fill();
     }
 
@@ -48,12 +66,13 @@ if (context) {
       }
     }
 
-    if (!reducedMotion.matches) frame = requestAnimationFrame(draw);
+    if (motionEnabled()) frame = requestAnimationFrame(draw);
   }
 
   function refresh() {
     cancelAnimationFrame(frame);
     previousTime = undefined;
+    trail.length = 0;
     const bounds = canvas.getBoundingClientRect();
     width = bounds.width;
     height = bounds.height;
@@ -78,7 +97,14 @@ if (context) {
   }
 
   window.addEventListener("pointermove", (event) => {
-    if (event.pointerType === "mouse") pointer = { x: event.clientX, y: event.clientY };
+    if (!motionEnabled() || event.pointerType === "touch") return;
+    const x = event.clientX;
+    const y = event.clientY;
+    if (!pointer || Math.hypot(x - pointer.x, y - pointer.y) >= 8) {
+      trail.push({ x, y, time: performance.now() });
+      if (trail.length > 24) trail.shift();
+    }
+    pointer = { x, y };
   });
   document.documentElement.addEventListener("pointerleave", clearPointer);
   window.addEventListener("blur", clearPointer);
@@ -87,5 +113,20 @@ if (context) {
     attributes: true,
     attributeFilter: ["data-theme"],
   });
-  reducedMotion.addEventListener("change", refresh);
+  function syncMotion() {
+    motionToggle.hidden = !reducedMotion.matches;
+    motionToggle.setAttribute("aria-pressed", String(motionEnabled()));
+    clearPointer();
+    refresh();
+  }
+
+  motionToggle.addEventListener("click", () => {
+    motionOverride = !motionOverride;
+    syncMotion();
+  });
+  reducedMotion.addEventListener("change", () => {
+    motionOverride = false;
+    syncMotion();
+  });
+  syncMotion();
 }
