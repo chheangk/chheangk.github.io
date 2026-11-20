@@ -2,14 +2,12 @@ const canvas = document.querySelector(".research-particles");
 const context = canvas?.getContext("2d");
 
 if (context) {
-  const section = canvas.parentElement;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const pointer = { x: -Infinity, y: -Infinity };
+  let pointer;
   let width;
   let height;
   let particles = [];
   let frame;
-  let visible = false;
   let previousTime;
 
   function draw(time) {
@@ -18,14 +16,18 @@ if (context) {
     context.clearRect(0, 0, width, height);
 
     for (const particle of particles) {
-      const dx = particle.x - pointer.x;
-      const dy = particle.y - pointer.y;
-      const distance = Math.hypot(dx, dy);
-      const push = distance > 0 && distance < 90 ? (90 - distance) / (90 * distance) : 0;
-      particle.x += (particle.vx + (push ? dx * push * 2 : 0)) * step;
-      particle.y += (particle.vy + (push ? dy * push * 2 : 0)) * step;
-      particle.x = (particle.x + width) % width;
-      particle.y = (particle.y + height) % height;
+      let targetX = particle.homeX;
+      let targetY = particle.homeY;
+      if (pointer) {
+        const dx = pointer.x - particle.homeX;
+        const dy = pointer.y - particle.homeY;
+        const pull = 0.75 * Math.max(0, 1 - Math.hypot(dx, dy) / 220);
+        targetX += dx * pull;
+        targetY += dy * pull;
+      }
+      const ease = 1 - Math.pow(0.9, step);
+      particle.x += (targetX - particle.x) * ease;
+      particle.y += (targetY - particle.y) * ease;
 
       context.globalAlpha = 0.8;
       context.beginPath();
@@ -46,7 +48,7 @@ if (context) {
       }
     }
 
-    if (visible && !reducedMotion.matches) frame = requestAnimationFrame(draw);
+    if (!reducedMotion.matches) frame = requestAnimationFrame(draw);
   }
 
   function refresh() {
@@ -62,34 +64,25 @@ if (context) {
     canvas.height = Math.round(height * scale);
     context.setTransform(scale, 0, 0, scale, 0, 0);
     context.fillStyle = context.strokeStyle = getComputedStyle(canvas).color;
-    const count = Math.min(55, Math.max(16, Math.round((width * height) / 3500)));
-    particles = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.55,
-      vy: (Math.random() - 0.5) * 0.55,
-    }));
+    const count = Math.min(130, Math.max(24, Math.round((width * height) / 8000)));
+    particles = Array.from({ length: count }, () => {
+      const x = Math.random() * width;
+      const y = Math.random() * height;
+      return { x, y, homeX: x, homeY: y };
+    });
     draw(performance.now());
   }
 
   function clearPointer() {
-    pointer.x = pointer.y = -Infinity;
+    pointer = undefined;
   }
 
-  section.addEventListener("pointermove", (event) => {
-    const bounds = canvas.getBoundingClientRect();
-    pointer.x = event.clientX - bounds.left;
-    pointer.y = event.clientY - bounds.top;
+  window.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "mouse") pointer = { x: event.clientX, y: event.clientY };
   });
-  section.addEventListener("pointerleave", clearPointer);
-  section.addEventListener("pointercancel", clearPointer);
+  document.documentElement.addEventListener("pointerleave", clearPointer);
+  window.addEventListener("blur", clearPointer);
   new ResizeObserver(refresh).observe(canvas);
-  new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting;
-    cancelAnimationFrame(frame);
-    previousTime = undefined;
-    if (visible && width && height && !reducedMotion.matches) frame = requestAnimationFrame(draw);
-  }).observe(section);
   new MutationObserver(refresh).observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["data-theme"],

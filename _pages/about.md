@@ -31,88 +31,21 @@ His research focuses on the intersection of wireless communications, network opt
 
 Prior to his current role, he worked as an Engineer at FLYNIX in South Korea, and served as a Laboratory Manager and Teaching Assistant in the School of Electrical and Electronics Engineering at Chung-Ang University.
 
-## Explore my research
-
-<div class="research-topics">
-  <canvas class="research-particles" aria-hidden="true"></canvas>
-  <details name="research-topic">
-    <summary>Wireless communications</summary>
-    <p>Physical layer security and wireless links for UAV and satellite networks.</p>
-  </details>
-  <details name="research-topic">
-    <summary>Network optimization</summary>
-    <p>Optimization techniques for designing intelligent, scalable next-generation networks.</p>
-  </details>
-  <details name="research-topic">
-    <summary>Artificial intelligence</summary>
-    <p>AI-driven wireless systems and research on large language models.</p>
-  </details>
-</div>
+<canvas class="research-particles" aria-hidden="true"></canvas>
 
 <style>
-  .research-topics {
-    --topic-accent: var(--global-theme-color, currentColor);
-    position: relative;
+  body:has(.research-particles) {
     isolation: isolate;
-    overflow: hidden;
-    display: grid;
-    gap: 0.5rem;
-    margin-block: 1rem 2rem;
-    padding: 1rem;
-    border: 1px solid var(--global-divider-color, currentColor);
-    border-radius: 1rem;
   }
   .research-particles {
-    position: absolute;
+    position: fixed;
     inset: 0;
     z-index: -1;
     width: 100%;
     height: 100%;
-    color: var(--topic-accent);
-    opacity: 0.5;
+    color: var(--global-theme-color, currentColor);
+    opacity: 0.55;
     pointer-events: none;
-  }
-  .research-topics details {
-    border: 1px solid var(--global-divider-color, currentColor);
-    border-radius: 0.75rem;
-  }
-  .research-topics summary {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    min-height: 44px;
-    padding: 0.65rem 1rem;
-    border-radius: inherit;
-    cursor: pointer;
-    list-style: none;
-  }
-  .research-topics summary::-webkit-details-marker {
-    display: none;
-  }
-  .research-topics summary::before {
-    content: "";
-    flex: 0 0 0.55rem;
-    height: 0.55rem;
-    border-radius: 50%;
-    background: var(--topic-accent);
-  }
-  .research-topics summary:hover::before,
-  .research-topics summary:focus-visible::before,
-  .research-topics details[open] summary::before {
-    transform: scale(1.45);
-    box-shadow: 0 0 0 2px var(--global-bg-color, Canvas), 0 0 0 3px var(--topic-accent);
-  }
-  .research-topics summary:focus-visible {
-    outline: 2px solid var(--topic-accent);
-    outline-offset: 2px;
-  }
-  .research-topics p {
-    margin: 0 1rem 0.85rem 2.4rem;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .research-topics summary::before {
-      transition: transform 160ms ease, box-shadow 160ms ease;
-    }
   }
 </style>
 
