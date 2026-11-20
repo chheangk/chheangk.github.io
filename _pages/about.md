@@ -30,24 +30,3 @@ Dr. Kimchheang Chhea is an AI Researcher at Techo Startup Center (TSC). He earne
 His research focuses on the intersection of wireless communications, network optimization, and artificial intelligence, with particular emphasis on physical layer security, UAV and satellite communications, AI-driven wireless systems, and large language models (LLMs). His work explores intelligent and scalable solutions for next-generation networks/systems by integrating advanced optimization techniques with emerging AI technologies.
 
 Prior to his current role, he worked as an Engineer at FLYNIX in South Korea, and served as a Laboratory Manager and Teaching Assistant in the School of Electrical and Electronics Engineering at Chung-Ang University.
-
-<canvas class="research-particles" aria-hidden="true"></canvas>
-<button class="btn btn-sm btn-outline-secondary research-motion-toggle" type="button" aria-pressed="false" hidden>Particle motion</button>
-
-<style>
-  .research-particles {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    color: var(--global-theme-color, currentColor);
-    opacity: 0.7;
-    pointer-events: none;
-  }
-  .research-motion-toggle[hidden] {
-    display: none;
-  }
-</style>
-
-<script type="module" src="{{ '/assets/js/research-particles.js' | relative_url }}?v=2"></script>
